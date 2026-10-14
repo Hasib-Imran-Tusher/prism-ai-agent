@@ -1,0 +1,11 @@
+﻿env/
+__pycache__/
+*.log
+.env
+.DS_Store
+*.pyc
+*.bak
+app_backup.py
+Alternative_model.txt
+more_features_1.txt
+test_*.py
