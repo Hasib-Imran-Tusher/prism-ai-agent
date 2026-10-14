@@ -130,12 +130,6 @@ except Exception:
 
 with st.sidebar:
     st.markdown("### ⚙️ সেটিংস")
-    api_key = st.text_input(
-        "🔑 Gemini API Key",
-        type="password",
-        value=default_key,
-        help="Cloud-এ Secrets থেকে স্বয়ংক্রিয়ভাবে লোড হবে"
-    )
     model_name = st.selectbox("🧠 মডেল", ["gemini-3.8-flash"])
     st.divider()
     if st.button("🗑️ চ্যাট মুছুন"):
@@ -147,15 +141,13 @@ with st.sidebar:
         st.caption(f"📊 {len(st.session_state.chat_history)} টি বার্তা")
     st.divider()
     st.caption("© ২০২৬ Hasib Imran Tusher")
-if not api_key:
-    st.markdown("""
-    <div class="glass-card" style="text-align:center; margin-top:60px;">
-        <h2 style="color:#a78bfa;">🔐 API Key দিন</h2>
-        <p>বাম সাইডবারে আপনার Gemini API Key দিন।</p>
-        <p><a href="https://aistudio.google.com/apikey" target="_blank" style="color:#f472b6;">aistudio.google.com/apikey</a></p>
-    </div>
-    """, unsafe_allow_html=True)
+
+# API Key Secrets থেকে নিন (শুধু এটাই)
+if not default_key:
+    st.error("⚠️ API Key সেট করা হয়নি। Streamlit Secrets-এ GEMINI_API_KEY যোগ করুন।")
     st.stop()
+
+api_key = default_key
 
 @st.cache_resource
 def make_client(key):
