@@ -122,10 +122,6 @@ if "chat_history" not in st.session_state:
 
 st.markdown('<h1 class="main-title">Hasib Imran Tusher</h1>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle">Multimodal AI Agent — চিন্তা, দেখুন, বুঝুন</p>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle-tag">✦ Powered by Gemini ✦</p>', unsafe_allow_html=True)
-
-with :
-   # Streamlit Secrets থেকে API Key পড়ুন (Cloud-এ কাজ করবে)
 default_key = ""
 try:
     default_key = st.secrets.get("GEMINI_API_KEY", "")
@@ -151,7 +147,6 @@ with st.sidebar:
         st.caption(f"📊 {len(st.session_state.chat_history)} টি বার্তা")
     st.divider()
     st.caption("© ২০২৬ Hasib Imran Tusher")
-
 if not api_key:
     st.markdown("""
     <div class="glass-card" style="text-align:center; margin-top:60px;">
