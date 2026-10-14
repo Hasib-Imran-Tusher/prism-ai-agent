@@ -124,9 +124,22 @@ st.markdown('<h1 class="main-title">Hasib Imran Tusher</h1>', unsafe_allow_html=
 st.markdown('<p class="subtitle">Multimodal AI Agent — চিন্তা, দেখুন, বুঝুন</p>', unsafe_allow_html=True)
 st.markdown('<p class="subtitle-tag">✦ Powered by Gemini ✦</p>', unsafe_allow_html=True)
 
+with :
+   # Streamlit Secrets থেকে API Key পড়ুন (Cloud-এ কাজ করবে)
+default_key = ""
+try:
+    default_key = st.secrets.get("GEMINI_API_KEY", "")
+except Exception:
+    default_key = ""
+
 with st.sidebar:
     st.markdown("### ⚙️ সেটিংস")
-    api_key = st.text_input("🔑 Gemini API Key", type="password", value="")
+    api_key = st.text_input(
+        "🔑 Gemini API Key",
+        type="password",
+        value=default_key,
+        help="Cloud-এ Secrets থেকে স্বয়ংক্রিয়ভাবে লোড হবে"
+    )
     model_name = st.selectbox("🧠 মডেল", ["gemini-3.8-flash"])
     st.divider()
     if st.button("🗑️ চ্যাট মুছুন"):
